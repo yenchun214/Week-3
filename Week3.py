@@ -4,9 +4,6 @@ class Network:
         self.weights = weights
         self.biases = biases
 
-    def sigmoid(self, x):
-        return 1 / (1 + math.exp(-x))
-
     def forward(self, inputs):
         layer_input = inputs
         for w_matrix, b_vector in zip(self.weights, self.biases):
@@ -16,7 +13,7 @@ class Network:
                 for k in range(len(layer_input)): 
                     z += layer_input[k] * w_matrix[k][j]
                 z += b_vector[j] 
-                layer_output.append(self.sigmoid(z))
+                layer_output.append(z)
             layer_input = layer_output
         return layer_input
     
